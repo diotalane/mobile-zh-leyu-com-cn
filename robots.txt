@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://diotalane.github.io/mobile-zh-leyu-com-cn/sitemap.xml
