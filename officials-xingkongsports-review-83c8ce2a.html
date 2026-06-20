@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>星空体育 · 不止是运动</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f2f4f7;
+      color: #1e293b;
+      line-height: 1.65;
+      padding: 2rem 1.25rem;
+    }
+
+    .page-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* ----- HERO / 主视觉 ----- */
+    .hero-card {
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e9edf2;
+      padding: 3rem 2.5rem 2.8rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at 30% 30%, rgba(99, 120, 255, 0.05), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: #5b6e8c;
+      background: #f0f3fa;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1.2rem;
+      border: 1px solid #dfe5ef;
+    }
+
+    .hero-card h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: #0e1c2f;
+      margin-bottom: 1rem;
+    }
+
+    .hero-card h1 span {
+      background: linear-gradient(145deg, #2f3a6b, #1a2a4a);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      font-size: 1.05rem;
+      color: #354a64;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text a {
+      font-weight: 500;
+      color: #1f3a6e;
+      text-decoration: none;
+      border-bottom: 1px solid #bcc9dd;
+      transition: border 0.2s;
+    }
+
+    .hero-text a:hover {
+      border-bottom-color: #1f3a6e;
+    }
+
+    /* ----- grid 卡片区 ----- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 22px;
+      padding: 2rem 1.6rem 1.8rem;
+      border: 1px solid #e6ebf2;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+      background: #f0f4fe;
+      padding: 0.45rem 0.65rem;
+      border-radius: 14px;
+      line-height: 1;
+    }
+
+    .info-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #18273f;
+    }
+
+    .info-card p {
+      font-size: 0.975rem;
+      color: #3b4d67;
+      margin-bottom: 0.6rem;
+    }
+
+    .info-card .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .tag {
+      background: #eef2f8;
+      border-radius: 30px;
+      padding: 0.2rem 0.9rem;
+      font-size: 0.8rem;
+      color: #29405e;
+      border: 1px solid #dde3ed;
+    }
+
+    /* ----- 适合人群 / 场景卡片 (双栏) ----- */
+    .double-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 700px) {
+      .double-section {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .group-card {
+      background: white;
+      border-radius: 22px;
+      padding: 2rem 1.6rem 1.8rem;
+      border: 1px solid #e6ebf2;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .group-card h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid #e9eef6;
+      color: #1b2b43;
+    }
+
+    .group-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .group-card li {
+      padding: 0.45rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.98rem;
+      color: #2c405b;
+    }
+
+    .group-card li::before {
+      content: '▹';
+      color: #59719b;
+      font-weight: 300;
+    }
+
+    .group-card p {
+      font-size: 0.98rem;
+      color: #2f4562;
+      margin-top: 0.4rem;
+    }
+
+    .group-card a {
+      font-weight: 500;
+      color: #1e3b65;
+      text-decoration: none;
+      border-bottom: 1px solid #cdd8e9;
+      transition: border 0.2s;
+    }
+
+    .group-card a:hover {
+      border-bottom-color: #1e3b65;
+    }
+
+    /* ----- 自然链接段落 / 附加卡片 ----- */
+    .link-note {
+      background: white;
+      border-radius: 22px;
+      padding: 2rem 2rem 2rem 2rem;
+      border: 1px solid #e2e9f1;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .link-note p {
+      font-size: 1rem;
+      color: #253d5a;
+      max-width: 70%;
+      flex: 1 1 280px;
+    }
+
+    .link-note a {
+      font-weight: 500;
+      color: #1b355b;
+      text-decoration: none;
+      border-bottom: 1px solid #bcc9dd;
+      transition: border 0.2s;
+    }
+
+    .link-note a:hover {
+      border-bottom-color: #1b355b;
+    }
+
+    .link-note .badge-soft {
+      background: #eaeff8;
+      border-radius: 60px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.85rem;
+      color: #1d355b;
+      border: 1px solid #d2dcec;
+      white-space: nowrap;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .link-note {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .link-note p {
+        max-width: 100%;
+      }
+    }
+
+    /* ----- FAQ 摘要卡片 ----- */
+    .faq-mini {
+      background: white;
+      border-radius: 22px;
+      padding: 1.8rem 2rem 2rem;
+      border: 1px solid #e5ebf3;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      margin-bottom: 1.8rem;
+    }
+
+    .faq-mini h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: #152942;
+    }
+
+    .faq-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eaeef6;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1b2f4a;
+      margin-bottom: 0.2rem;
+      font-size: 0.98rem;
+    }
+
+    .faq-a {
+      font-size: 0.92rem;
+      color: #38506e;
+      line-height: 1.5;
+    }
+
+    .faq-a a {
+      color: #21406b;
+      text-decoration: none;
+      border-bottom: 1px solid #c9d5e9;
+    }
+
+    .faq-a a:hover {
+      border-bottom-color: #21406b;
+    }
+
+    /* ----- 页脚 ----- */
+    .page-footer {
+      text-align: center;
+      color: #62748b;
+      font-size: 0.85rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #dce2ec;
+      margin-top: 0.8rem;
+    }
+
+    .page-footer a {
+      color: #2d4670;
+      text-decoration: none;
+      border-bottom: 1px solid #c2cfdf;
+    }
+
+    .page-footer a:hover {
+      border-bottom-color: #2d4670;
+    }
+
+    /* 微调响应式 */
+    @media (max-width: 480px) {
+      .hero-card {
+        padding: 2rem 1.4rem;
+      }
+      .hero-card h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  
+  <!-- HERO 主视觉 -->
+  <div class="hero-card">
+    <div class="hero-eyebrow">主题 · 运动与联结</div>
+    <h1>关于 <span>星空体育</span> 的一种叙述</h1>
+    <p class="hero-text">
+      有些事物从名字开始就带着想象。星空体育并不是一个简单的标签，而更像一种将户外节奏、竞技热情与日常习惯融合的尝试。在信息过载的时代，<a href="https://officials-xingkongsports.com" target="_blank" rel="noopener noreferrer">星空体育</a> 试图用朴素的运动理念——持续、节奏、自我对话——去回应人们对身体活动的需要。不喧哗，不跟风，只是提供一种可触摸的方向。
+    </p>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.2rem;">
+      <span class="tag">#运动习惯</span>
+      <span class="tag">#户外节奏</span>
+      <span class="tag">#日常训练</span>
+    </div>
+  </div>
+
+  <!-- 三张信息卡片：用途、场景、特点 -->
+  <div class="card-grid">
+    <div class="info-card">
+      <div class="card-icon">🏃</div>
+      <h3>用途 · 不止于竞技</h3>
+      <p>它可以是一种晨间唤醒，也可以是傍晚的独自拉伸。有人用来保持精力，有人用来整理思绪。无论跑步、球类、基础体能，还是轻量的户外徒步——星空体育所涵盖的场景，更接近「用身体去感受」这件事本身。</p>
+      <div class="tag-list">
+        <span class="tag">晨跑</span>
+        <span class="tag">间歇训练</span>
+        <span class="tag">拉伸恢复</span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="card-icon">🧘</div>
+      <h3>特点 · 低门槛，可持续</h3>
+      <p>不需要昂贵的装备或特定的场地。一处安静的空地、一段空闲的时间、一份不过分严苛的计划。星空体育所传递的，更多是「开始并坚持」的朴素逻辑。它面向真实的身体状态，而非表演式的运动数据。</p>
+      <div class="tag-list">
+        <span class="tag">无器械</span>
+        <span class="tag">灵活时长</span>
+        <span class="tag">渐进适应</span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="card-icon">🌿</div>
+      <h3>场景 · 自然与日常</h3>
+      <p>公园的小径、社区的空地、阳台的一角，甚至是通勤途中的一段步行。星空体育不把运动从生活里割裂出来，而是让它自然地镶嵌进一天的缝隙中。不需要仪式感，只需要一点点行动惯性。</p>
+      <div class="tag-list">
+        <span class="tag">户外</span>
+        <span class="tag">居家</span>
+        <span class="tag">短时高效</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 双栏：适合人群 + 常见场景延伸 -->
+  <div class="double-section">
+    <div class="group-card">
+      <h2>适合什么样的人</h2>
+      <ul>
+        <li>长期久坐、需要重新激活身体节奏的人</li>
+        <li>对高强度健身感到压力，想从温和运动开始的人</li>
+        <li>喜欢户外但不想被复杂规则束缚的散步或慢跑者</li>
+        <li>希望保持日常活动量，而非追求极限成绩的人</li>
+        <li>寻找一种可持续、不依赖意志力的运动方式的人</li>
+      </ul>
+      <p style="margin-top: 1rem;">—— 你不必是运动员，也不必制定严苛的时间表。星空体育更倾向于容纳不同起点的人。</p>
+    </div>
+
+    <div class="group-card">
+      <h2>一些具体场景</h2>
+      <ul>
+        <li>早晨用15分钟做一组简单的拉伸和原地踏步</li>
+        <li>午休时在附近街区散步两圈，保持步频</li>
+        <li>下班后脱下鞋袜，在草地上站一会儿，做几组深蹲</li>
+        <li>周末选一条人少的路线，慢跑或快走20分钟</li>
+        <li>用手机记录每次活动的感受，而不是数据</li>
+      </ul>
+      <p>这些微小的动作累积起来，比一次高强度的突击更有意义。<a href="https://officials-xingkongsports.com" target="_blank" rel="noopener noreferrer">星空体育</a> 的出发点也正是如此——关注过程，而非数字。</p>
+    </div>
+  </div>
+
+  <!-- 自然链接段落 -->
+  <div class="link-note">
+    <p>
+      如果你也在寻找一种不焦虑、不内耗的运动方式，不妨从一次简单的散步或原地踏步开始。星空体育所覆盖的内容和思路，都围绕「回到身体本身」这一线索展开。你可以在 <a href="https://officials-xingkongsports.com" target="_blank" rel="noopener noreferrer">星空体育</a> 找到更多相关的想法和记录。
+    </p>
+    <span class="badge-soft">慢慢来 · 比较快</span>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h2>一些简短的回答</h2>
+    <div class="faq-item">
+      <div class="faq-q">— 星空体育需要下载 App 吗？</div>
+      <div class="faq-a">不需要。它更像一个提供思路和内容的地方，你可以在网站上阅读、参考，然后用自己喜欢的方式去实践。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">— 完全没有运动基础，适合吗？</div>
+      <div class="faq-a">是的。很多内容都从最基础的动作和意识开始，不强调强度，而是关注身体反馈。你可以按自己的节奏来。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">— 网站会提供训练计划吗？</div>
+      <div class="faq-a">会提供一些参照性的思路和框架，但不会制定强制计划。你永远是自己的教练。更多内容可参考 <a href="https://officials-xingkongsports.com" target="_blank" rel="noopener noreferrer">星空体育</a> 上的日常更新。</div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="page-footer">
+    <span>主题页面 · 内容方向：运动日常 · 基于 <a href="https://officials-xingkongsports.com" target="_blank" rel="noopener noreferrer">星空体育</a> 延伸</span>
+  </div>
+</div>
+</body>
+</html>
